@@ -63,21 +63,26 @@ bitbake-layers add-layer ../emb_linux_rpi3_yocto/meta-ynov-rpi3
 ```
 ### In the file conf/local.conf :
 3) change the machine variable to "raspberrypi3" (or "raspberrypi4" for RPi 4), and add IMAGE_FSTYPE variable with the value "rpi-sdimg". You should have this :
-```m
+```
 MACHINE = "raspberrypi3"
 IMAGE_FSTYPE = "rpi-sdimg"
 ```
 4) uncomment this lines :
-```m
+```
 DL_DIR ?= "${TOPDIR}/downloads"
 SSTATE_DIR ?= "${TOPDIR}/sstate-cache"
 TMPDIR = "${TOPDIR}/tmp"
 ```
 5) Add this at the and of the file :
-```m
-BB_NUMBER_THREADS = "${nproc}"
-PARALLEL_MAKE = "-j ${nproc}"
+```conf
+# Enable multi-tasking during the build. Replace the "4" by your CPU's core count (run 'nproc' if you don't know it)
+# Ex for a 4c/8t CPU : 
+#   BB_NUMBER_THREADS = 8
+#   PARALLEL_MAKE = 8
+BB_NUMBER_THREADS = "4"
+PARALLEL_MAKE = "-j 4"
 
+# Enables virtualization in the image (in order to use docker)
 DISTRO_FEATURES_append = " virtualization"
 ```
 ---
