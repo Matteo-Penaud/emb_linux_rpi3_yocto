@@ -92,8 +92,8 @@ TMPDIR = "${TOPDIR}/tmp"
 ```conf
 # Enable multi-tasking during the build. Replace the "4" by your CPU's core count (run 'nproc' if you don't know it)
 # Ex for a 4c/8t CPU : 
-#   BB_NUMBER_THREADS = 8
-#   PARALLEL_MAKE = 8
+#   BB_NUMBER_THREADS = "8"
+#   PARALLEL_MAKE = "-j 8"
 BB_NUMBER_THREADS = "4"
 PARALLEL_MAKE = "-j 4"
 
