@@ -25,7 +25,7 @@ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpat
 
 2) Clone the Poky repository from git :
 ```
-cd <BUILD_DIR>
+cd <PROJECT_DIR>
 git clone -b gatesgarth git://git.yoctoproject.org/poky.git ./poky
 ```
 
@@ -40,7 +40,7 @@ git clone -b gatesgarth git://git.yoctoproject.org/meta-virtualization
 
 4) Clone this repo and copy the folders where they should be :
 ```
-cd <BUILD_DIR>
+cd <PROJECT_DIR>
 git clone https://github.com/Matteo-Penaud/emb_linux_rpi3_yocto.git
 ```
 <br><br>
@@ -50,6 +50,21 @@ git clone https://github.com/Matteo-Penaud/emb_linux_rpi3_yocto.git
 ```
 source poky/oe-init-build-env ./rpi3-build
 ```
+From here, you have 2 methods :
+
+## 1 - Use this conf folder
+You can replace the conf folder of your build directory by the one in this repo.
+
+It's configurated FOR MY SYSTEM, so you will have some changes to do :
+
+2) Modify the layers path in the bblayers.conf file to match your environment
+
+3) At the very end of the local.conf file, change the CPU thread count to match your build host.
+
+
+## 2 - DIY!
+I prefer this one, it's better to learn !
+
 2) Add the layers:
 ```
 bitbake-layers add-layer ../layers/meta-raspberrypi
@@ -65,7 +80,7 @@ bitbake-layers add-layer ../emb_linux_rpi3_yocto/meta-ynov-rpi3
 3) change the machine variable to "raspberrypi3" (or "raspberrypi4" for RPi 4), and add IMAGE_FSTYPE variable with the value "rpi-sdimg". You should have this :
 ```
 MACHINE = "raspberrypi3"
-IMAGE_FSTYPE = "rpi-sdimg"
+IMAGE_FSTYPES = "rpi-sdimg"
 ```
 4) uncomment this lines :
 ```
@@ -91,3 +106,27 @@ DISTRO_FEATURES_append = " virtualization"
 bitbake ynov-rpi3-image
 ```
 The building time will vary depending on your build machine and your internet bandwidth.
+
+<br><br>
+# Flash the image
+When you're done with the build, you can flash your sdcard with your image :
+```
+cd <BUILD_DIR>/tmp/deploy/images/raspberrypi3 (or raspberrypi4)
+sudo dd if=ynov-rpi3-image-raspberrypi3.rpi-sdimg of=/dev/sdX
+```
+Replace the X in sdX by the letter of your sdcard.
+You might need to do a ```sync``` in order to write on the sdcard.
+
+Once the RPi booted up, login with root (no password required).
+
+To check if the hello-world layer is correctly installed and configured, run the hello command :
+```
+hello
+```
+It should returns "Hello World from Ynov (Matteo PENAUD)!".
+
+<br><br>
+# Known issues
+Something I noticed will testing this build is that sometimes, the boot ends up with "Kernel panic" error.
+
+To correct it, try formating your sdcard (Free space) and reflashing.
