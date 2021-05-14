@@ -5,7 +5,6 @@ First thing first, grab your brain, get a mug of coffee (or 2), and take your ca
 You're good ?
 
 Let's begin !
-
 <br><br>
 Make sure your build host meets the following requirements (https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html) :
 - 50 GB of free disk space
@@ -15,7 +14,6 @@ Make sure your build host meets the following requirements (https://docs.yoctopr
     - tar 1.28 or greater
     - Python 3.6.0 or greater
     - gcc 5.0 or greater
-
 <br><br>
 1) Install those packages :
 
