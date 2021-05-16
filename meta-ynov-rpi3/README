@@ -1,41 +1,38 @@
-This README file contains information on the contents of the meta-ynov-rpi4 layer.
+This README file contains information on the contents of the meta-ynov-rpi3 layer.
 
 Please see the corresponding sections below for details.
 
 Dependencies
 ============
 
-  URI: <first dependency>
-  branch: <branch name>
+  URI: git://git.openembedded.org/meta-openembedded
+  branch: gatesgarth
 
-  URI: <second dependency>
-  branch: <branch name>
+  URI: git://git.yoctoproject.org/meta-raspberrypi
+  branch: gatesgarth
 
-  .
-  .
-  .
+  URI: git://git.yoctoproject.org/meta-virtualization
+  branch: gatesgarth
 
 Patches
 =======
 
-Please submit any patches against the meta-ynov-rpi4 layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
-
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
+Maintainer: Matteo PENAUD <matteo.penaud@ynov.com>
 
 Table of Contents
 =================
 
-  I. Adding the meta-ynov-rpi4 layer to your build
+  I. Adding the meta-ynov-rpi3 layer to your build
  II. Misc
 
 
-I. Adding the meta-ynov-rpi4 layer to your build
+I. Adding the meta-ynov-rpi3 layer to your build
 =================================================
 
-Run 'bitbake-layers add-layer meta-ynov-rpi4'
+Run 'bitbake-layers add-layer meta-ynov-rpi3'
 
 II. Misc
 ========
 
---- replace with specific information about the meta-ynov-rpi4 layer ---
+Buildable images :
+  ynov-rpi3-image
